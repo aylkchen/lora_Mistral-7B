@@ -1,0 +1,38 @@
+base_model: mistralai/Mistral-7B-Instruct-v0.1
+task_name: anime_persona_lora_r8
+dataset_path: data/anime/splits
+output_dir: outputs/anime_mistral_lora_r8
+load_in_4bit: true
+batch_size: 4
+gradient_accumulation_steps: 4
+epochs: 3
+learning_rate: 2.0e-4
+max_seq_length: 512
+seed: 42
+logging_steps: 20
+save_steps: 200
+save_total_limit: 2
+gradient_checkpointing: true
+report_to: none
+lora:
+  r: 8
+  alpha: 16
+  dropout: 0.05
+  target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+generation:
+  max_new_tokens: 96
+  temperature: 0.8
+  top_p: 0.9
+  repetition_penalty: 1.1
+  do_sample: true
+evaluation:
+  mode: anime
+  prompt_path: data/anime/eval_prompts.jsonl
+  style_cues_path: data/anime/style_cues.json
+  manual_score_path: outputs/anime_mistral_lora_r8/eval_outputs/anime_judge_sheet.jsonl
+  sample_size: 50
+

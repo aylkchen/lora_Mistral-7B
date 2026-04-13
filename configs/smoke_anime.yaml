@@ -1,0 +1,40 @@
+base_model: hf-internal-testing/tiny-random-LlamaForCausalLM
+task_name: smoke_anime_lora
+dataset_path: data/anime/splits
+output_dir: outputs/smoke_anime_tiny
+load_in_4bit: false
+batch_size: 2
+gradient_accumulation_steps: 1
+epochs: 1
+learning_rate: 5.0e-4
+max_seq_length: 256
+seed: 42
+logging_steps: 5
+save_steps: 20
+save_total_limit: 1
+gradient_checkpointing: false
+report_to: none
+max_train_samples: 16
+max_eval_samples: 8
+max_test_samples: 8
+lora:
+  r: 4
+  alpha: 8
+  dropout: 0.05
+  target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+generation:
+  max_new_tokens: 48
+  temperature: 0.8
+  top_p: 0.9
+  repetition_penalty: 1.05
+  do_sample: true
+evaluation:
+  mode: anime
+  prompt_path: data/anime/eval_prompts.jsonl
+  style_cues_path: data/anime/style_cues.json
+  manual_score_path: outputs/smoke_anime_tiny/eval_outputs/anime_judge_sheet.jsonl
+  sample_size: 6

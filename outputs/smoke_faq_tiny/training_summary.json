@@ -1,0 +1,75 @@
+{
+  "task_name": "smoke_faq_lora",
+  "dataset_sizes": {
+    "train": 24,
+    "validation": 8,
+    "test": 8
+  },
+  "train_metrics": {
+    "train_runtime": 1.9797,
+    "train_samples_per_second": 12.123,
+    "train_steps_per_second": 6.061,
+    "total_flos": 6831062784.0,
+    "train_loss": 10.26384973526001
+  },
+  "parameter_stats": {
+    "trainable_params": 1024,
+    "all_params": 1033296,
+    "trainable_ratio_percent": 0.0991
+  },
+  "memory_stats": {
+    "peak_gpu_memory_gb": 0.0
+  },
+  "config": {
+    "base_model": "hf-internal-testing/tiny-random-LlamaForCausalLM",
+    "task_name": "smoke_faq_lora",
+    "dataset_path": "D:\\pythonProject\\lora\\data\\faq\\splits",
+    "output_dir": "D:\\pythonProject\\lora\\outputs\\smoke_faq_tiny",
+    "load_in_4bit": false,
+    "batch_size": 2,
+    "gradient_accumulation_steps": 1,
+    "epochs": 1,
+    "learning_rate": 0.0005,
+    "max_seq_length": 256,
+    "seed": 42,
+    "logging_steps": 5,
+    "save_steps": 20,
+    "save_total_limit": 1,
+    "gradient_checkpointing": false,
+    "report_to": "none",
+    "max_train_samples": 24,
+    "max_eval_samples": 8,
+    "max_test_samples": 8,
+    "lora": {
+      "r": 4,
+      "alpha": 8,
+      "dropout": 0.05,
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj"
+      ]
+    },
+    "generation": {
+      "max_new_tokens": 48,
+      "temperature": 0.3,
+      "top_p": 0.9,
+      "repetition_penalty": 1.05,
+      "do_sample": true
+    },
+    "evaluation": {
+      "mode": "faq",
+      "prompt_path": "D:\\pythonProject\\lora\\data\\faq\\heldout.jsonl",
+      "style_cues_path": null,
+      "manual_score_path": "D:\\pythonProject\\lora\\outputs\\smoke_faq_tiny\\eval_outputs\\faq_manual_sheet.jsonl",
+      "sample_size": 12
+    }
+  },
+  "validation_metrics": {
+    "eval_loss": 10.26523208618164,
+    "eval_runtime": 0.1618,
+    "eval_samples_per_second": 49.438,
+    "eval_steps_per_second": 24.719
+  }
+}

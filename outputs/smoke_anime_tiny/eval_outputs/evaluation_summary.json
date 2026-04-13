@@ -1,0 +1,8 @@
+{
+  "task_name": "smoke_anime_lora",
+  "mode": "anime",
+  "num_examples": 6,
+  "base_style_cue_hit_rate": 0.0,
+  "adapter_style_cue_hit_rate": 0.0,
+  "manual_scores": {}
+}

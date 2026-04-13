@@ -1,0 +1,10 @@
+{
+  "task_name": "smoke_faq_lora",
+  "mode": "faq",
+  "num_examples": 12,
+  "base_rouge_l": 0.0,
+  "adapter_rouge_l": 0.0,
+  "base_keyword_hit_rate": 0.0,
+  "adapter_keyword_hit_rate": 0.0,
+  "manual_scores": {}
+}
