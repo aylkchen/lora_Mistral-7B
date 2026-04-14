@@ -200,6 +200,6 @@ python evaluate.py --config configs/faq_lora.yaml --checkpoint outputs/faq_mistr
 
 ## 说明
 
-- 当前仓库默认保留了原始 [Untitled.ipynb](./Untitled.ipynb)，方便你回看最初的实验过程。
+- 当前仓库默认保留了原始 [Untitled.ipynb](./Untitled.ipynb)，方便回看最初的实验过程。
 - `train.py` 已经处理了 Windows 下 `TRL` 的 UTF-8 兼容问题，本地可先 smoke，正式实验建议在 Linux/CUDA 服务器上运行。
-- 如果你服务器上的基础模型路径不是 Hugging Face 名称，而是本地绝对路径，只需要修改对应 YAML 里的 `base_model`。
+- 如果服务器上的基础模型路径不是 Hugging Face 名称，而是本地绝对路径，只需要修改对应 YAML 里的 `base_model`。
