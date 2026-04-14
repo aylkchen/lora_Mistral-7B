@@ -17,6 +17,7 @@ from .modeling import (
     has_cuda,
     load_model,
     load_tokenizer,
+    preferred_dtype,
 )
 
 
@@ -67,8 +68,8 @@ def run_training(config: ExperimentConfig, resume_from_checkpoint: str | None = 
         eval_strategy="epoch" if "validation" in dataset else "no",
         do_train=True,
         do_eval="validation" in dataset,
-        fp16=has_cuda(),
-        bf16=False,
+        fp16=has_cuda() and preferred_dtype() == torch.float16,
+        bf16=has_cuda() and preferred_dtype() == torch.bfloat16,
         use_cpu=not has_cuda(),
     )
 

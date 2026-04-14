@@ -1,0 +1,75 @@
+{
+  "task_name": "faq_support_lora_r8",
+  "dataset_sizes": {
+    "train": 864,
+    "validation": 108,
+    "test": 108
+  },
+  "train_metrics": {
+    "train_runtime": 231.907,
+    "train_samples_per_second": 11.177,
+    "train_steps_per_second": 0.699,
+    "total_flos": 8830680744591360.0,
+    "train_loss": 0.4873317023854197
+  },
+  "parameter_stats": {
+    "trainable_params": 6815744,
+    "all_params": 3758886912,
+    "trainable_ratio_percent": 0.1813
+  },
+  "memory_stats": {
+    "peak_gpu_memory_gb": 4.9594
+  },
+  "config": {
+    "base_model": "/public/huggingface-models/mistralai/Mistral-7B-Instruct-v0.1",
+    "task_name": "faq_support_lora_r8",
+    "dataset_path": "/root/lora/lora_Mistral-7B/data/faq/splits",
+    "output_dir": "/root/lora/lora_Mistral-7B/outputs/faq_mistral_lora_r8",
+    "load_in_4bit": true,
+    "batch_size": 4,
+    "gradient_accumulation_steps": 4,
+    "epochs": 3,
+    "learning_rate": 0.0002,
+    "max_seq_length": 512,
+    "seed": 42,
+    "logging_steps": 20,
+    "save_steps": 200,
+    "save_total_limit": 2,
+    "gradient_checkpointing": true,
+    "report_to": "none",
+    "max_train_samples": null,
+    "max_eval_samples": null,
+    "max_test_samples": null,
+    "lora": {
+      "r": 8,
+      "alpha": 16,
+      "dropout": 0.05,
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj"
+      ]
+    },
+    "generation": {
+      "max_new_tokens": 96,
+      "temperature": 0.3,
+      "top_p": 0.9,
+      "repetition_penalty": 1.05,
+      "do_sample": true
+    },
+    "evaluation": {
+      "mode": "faq",
+      "prompt_path": "/root/lora/lora_Mistral-7B/data/faq/heldout.jsonl",
+      "style_cues_path": null,
+      "manual_score_path": "/root/lora/lora_Mistral-7B/outputs/faq_mistral_lora_r8/eval_outputs/faq_manual_sheet.jsonl",
+      "sample_size": 100
+    }
+  },
+  "validation_metrics": {
+    "eval_loss": 0.10674960166215897,
+    "eval_runtime": 2.2717,
+    "eval_samples_per_second": 47.542,
+    "eval_steps_per_second": 11.885
+  }
+}

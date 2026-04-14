@@ -1,0 +1,10 @@
+{
+  "task_name": "faq_support_lora",
+  "mode": "faq",
+  "num_examples": 100,
+  "base_rouge_l": 0.1229,
+  "adapter_rouge_l": 0.9685,
+  "base_keyword_hit_rate": 0.3633,
+  "adapter_keyword_hit_rate": 0.99,
+  "manual_scores": {}
+}

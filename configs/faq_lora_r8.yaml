@@ -1,4 +1,4 @@
-base_model: mistralai/Mistral-7B-Instruct-v0.1
+base_model: /public/huggingface-models/mistralai/Mistral-7B-Instruct-v0.1
 task_name: faq_support_lora_r8
 dataset_path: data/faq/splits
 output_dir: outputs/faq_mistral_lora_r8

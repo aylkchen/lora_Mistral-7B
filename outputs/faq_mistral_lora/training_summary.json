@@ -1,0 +1,75 @@
+{
+  "task_name": "faq_support_lora",
+  "dataset_sizes": {
+    "train": 864,
+    "validation": 108,
+    "test": 108
+  },
+  "train_metrics": {
+    "train_runtime": 248.2121,
+    "train_samples_per_second": 10.443,
+    "train_steps_per_second": 0.653,
+    "total_flos": 8839137065435136.0,
+    "train_loss": 0.3233631122627376
+  },
+  "parameter_stats": {
+    "trainable_params": 13631488,
+    "all_params": 3765702656,
+    "trainable_ratio_percent": 0.362
+  },
+  "memory_stats": {
+    "peak_gpu_memory_gb": 5.0101
+  },
+  "config": {
+    "base_model": "/public/huggingface-models/mistralai/Mistral-7B-Instruct-v0.1",
+    "task_name": "faq_support_lora",
+    "dataset_path": "/root/lora/lora_Mistral-7B/data/faq/splits",
+    "output_dir": "/root/lora/lora_Mistral-7B/outputs/faq_mistral_lora",
+    "load_in_4bit": true,
+    "batch_size": 4,
+    "gradient_accumulation_steps": 4,
+    "epochs": 3,
+    "learning_rate": 0.0002,
+    "max_seq_length": 512,
+    "seed": 42,
+    "logging_steps": 20,
+    "save_steps": 200,
+    "save_total_limit": 2,
+    "gradient_checkpointing": true,
+    "report_to": "none",
+    "max_train_samples": null,
+    "max_eval_samples": null,
+    "max_test_samples": null,
+    "lora": {
+      "r": 16,
+      "alpha": 32,
+      "dropout": 0.05,
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj"
+      ]
+    },
+    "generation": {
+      "max_new_tokens": 96,
+      "temperature": 0.3,
+      "top_p": 0.9,
+      "repetition_penalty": 1.05,
+      "do_sample": true
+    },
+    "evaluation": {
+      "mode": "faq",
+      "prompt_path": "/root/lora/lora_Mistral-7B/data/faq/heldout.jsonl",
+      "style_cues_path": null,
+      "manual_score_path": "/root/lora/lora_Mistral-7B/outputs/faq_mistral_lora/eval_outputs/faq_manual_sheet.jsonl",
+      "sample_size": 100
+    }
+  },
+  "validation_metrics": {
+    "eval_loss": 0.10574623197317123,
+    "eval_runtime": 2.2868,
+    "eval_samples_per_second": 47.228,
+    "eval_steps_per_second": 11.807
+  }
+}

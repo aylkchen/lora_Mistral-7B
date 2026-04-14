@@ -15,6 +15,14 @@ def has_cuda() -> bool:
     return torch.cuda.is_available()
 
 
+def preferred_dtype() -> torch.dtype:
+    if not has_cuda():
+        return torch.float32
+    if hasattr(torch.cuda, "is_bf16_supported") and torch.cuda.is_bf16_supported():
+        return torch.bfloat16
+    return torch.float16
+
+
 def load_tokenizer(base_model: str):
     tokenizer = AutoTokenizer.from_pretrained(
         base_model,
@@ -36,19 +44,22 @@ def load_model(config: ExperimentConfig, checkpoint_path: str | Path | None = No
                 "load_in_4bit=True requires CUDA. "
                 "Use a GPU server to run this config, or switch to a smoke config."
             )
+        compute_dtype = preferred_dtype()
         model_kwargs["device_map"] = "auto"
         model_kwargs["quantization_config"] = BitsAndBytesConfig(
             load_in_4bit=True,
             bnb_4bit_quant_type="nf4",
             bnb_4bit_use_double_quant=True,
-            bnb_4bit_compute_dtype=torch.float16,
+            bnb_4bit_compute_dtype=compute_dtype,
         )
+        model_kwargs["dtype"] = compute_dtype
     else:
+        dtype = preferred_dtype()
         if has_cuda():
             model_kwargs["device_map"] = "auto"
-            model_kwargs["dtype"] = torch.float16
+            model_kwargs["dtype"] = dtype
         else:
-            model_kwargs["dtype"] = torch.float32
+            model_kwargs["dtype"] = dtype
 
     model = AutoModelForCausalLM.from_pretrained(config.base_model, **model_kwargs)
     if config.load_in_4bit:
