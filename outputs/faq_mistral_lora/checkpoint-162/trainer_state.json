@@ -35,9 +35,9 @@
       "eval_loss": 0.11652836948633194,
       "eval_mean_token_accuracy": 0.9443962816838865,
       "eval_num_tokens": 64916.0,
-      "eval_runtime": 2.3004,
-      "eval_samples_per_second": 46.948,
-      "eval_steps_per_second": 11.737,
+      "eval_runtime": 2.4099,
+      "eval_samples_per_second": 44.814,
+      "eval_steps_per_second": 11.204,
       "step": 54
     },
     {
@@ -76,9 +76,9 @@
       "eval_loss": 0.10752920061349869,
       "eval_mean_token_accuracy": 0.9447321339889809,
       "eval_num_tokens": 129832.0,
-      "eval_runtime": 2.2956,
-      "eval_samples_per_second": 47.047,
-      "eval_steps_per_second": 11.762,
+      "eval_runtime": 2.2654,
+      "eval_samples_per_second": 47.674,
+      "eval_steps_per_second": 11.919,
       "step": 108
     },
     {
