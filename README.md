@@ -97,7 +97,7 @@
   - 账号
   - 售后支持
 
-如果你后续要替换成自己的真实数据，只需要保持 `system / user / assistant` 字段不变，然后修改对应配置里的 `dataset_path` 即可。
+如果后续要替换成自己的真实数据，只需要保持 `system / user / assistant` 字段不变，然后修改对应配置里的 `dataset_path` 即可。
 
 ## 训练与评测
 
@@ -183,9 +183,7 @@ python evaluate.py --config configs/faq_lora.yaml --checkpoint outputs/faq_mistr
 - [outputs/smoke_faq_tiny/training_summary.json](./outputs/smoke_faq_tiny/training_summary.json)
 - [outputs/smoke_faq_tiny/eval_outputs/evaluation_summary.json](./outputs/smoke_faq_tiny/eval_outputs/evaluation_summary.json)
 
-## 面试时可以怎么讲
-
-你可以把这个项目讲成：
+## 面试
 
 `基于 Mistral-7B-Instruct 完成动漫人格对话和 FAQ 客服助手两个场景的参数高效微调实验，使用 PEFT 对注意力层 q/k/v/o 投影注入 LoRA，通过 TRL 的 SFTTrainer 完成监督微调，并搭建了从数据整理、chat template 构造、训练、推理到人工评测/自动评测的完整闭环；其中动漫场景数据 744 条、6 类人格，FAQ 场景包含 360 条种子问答与 1080 条 SFT 样本，原始实验可训练参数占比约 0.188%，验证了在低成本训练条件下实现风格化生成和窄域问答微调的可行性。`
 
